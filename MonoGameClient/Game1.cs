@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using Engine.Engines;
 using Sprites;
 using System.Collections.Generic;
+using GameComponentNS;
 
 namespace MonoGameClient
 {
@@ -102,6 +103,8 @@ namespace MonoGameClient
             // Create an other player sprite
             new OtherPlayerSprite(this, otherPlayerData, Content.Load<Texture2D>(otherPlayerData.imageName),
                                     new Point(otherPlayerData.playerPosition.X, otherPlayerData.playerPosition.Y));
+
+            
         }
 
 
@@ -161,6 +164,8 @@ namespace MonoGameClient
             new SimplePlayerSprite(this, player, Content.Load<Texture2D>(player.imageName),
                                     new Point(player.playerPosition.X, player.playerPosition.Y));
             connectionMessage = player.playerID + " created ";
+
+            new FadeText(this, Vector2.Zero, " Welcome " + player.GamerTag + " has joined the game" + player.imageName);
         }
 
         /// <summary>
@@ -173,6 +178,7 @@ namespace MonoGameClient
             Services.AddService<SpriteBatch>(spriteBatch);
 
             font = Content.Load<SpriteFont>("Message");
+            Services.AddService<SpriteFont>(font);
             
         }
 
