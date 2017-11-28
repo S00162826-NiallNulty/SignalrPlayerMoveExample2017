@@ -46,7 +46,7 @@ namespace MonoGameClient
             new InputEngine(this);
 
             // TODO: Add your initialization logic here change local host to newly created local host
-            serverConnection = new HubConnection("http://localhost:53922/");
+            serverConnection = new HubConnection("http://s00162826gameserverapp.azurewebsites.net");
             serverConnection.StateChanged += ServerConnection_StateChanged;
             proxy = serverConnection.CreateHubProxy("GameHub");
             serverConnection.Start();
@@ -78,7 +78,7 @@ namespace MonoGameClient
                 {
                     OtherPlayerSprite p = ((OtherPlayerSprite)player);
                     p.pData.playerPosition = newPos;
-                    p.Position = new Point(p.pData.playerPosition.X, p.pData.playerPosition.Y);
+                    p.Target = new Point(p.pData.playerPosition.X, p.pData.playerPosition.Y);
                     break; // break out of loop as only one player position is being updated
                            // and we have found it
                 }
@@ -165,7 +165,7 @@ namespace MonoGameClient
                                     new Point(player.playerPosition.X, player.playerPosition.Y));
             connectionMessage = player.playerID + " created ";
 
-            new FadeText(this, Vector2.Zero, " Welcome " + player.GamerTag + " has joined the game" + player.imageName);
+            new FadeText(this,new Vector2(0,420), " Welcome " + player.GamerTag + " has joined the game" + player.imageName);
         }
 
         /// <summary>
